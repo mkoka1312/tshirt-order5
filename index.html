@@ -3,130 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Заказ футболки по эскизу</title>
+  <title>Твоя идея — наша футболка</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
-      color: #f0f0f0;
-      text-align: center;
-      background-image: url('https://images.unsplash.com/photo-1593032465171-8f5f4dcaa58b');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center;
-      animation: backgroundFade 10s infinite alternate;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
-
-    @keyframes backgroundFade {
-      from {
-        filter: brightness(1);
-      }
-      to {
-        filter: brightness(1.2);
-      }
-    }
-
     header {
-      padding: 2rem;
-      background: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      margin-bottom: 2rem;
     }
     h1 {
-      font-size: 2.5rem;
-      color: #00ffcc;
+      font-size: 2.2rem;
+      margin: 0.5rem 0;
+    }
+    p {
+      color: #ccc;
     }
     form {
-      background-color: rgba(0, 0, 0, 0.75);
+      width: 100%;
+      max-width: 500px;
+      background: #111;
       padding: 2rem;
-      max-width: 600px;
-      margin: 2rem auto;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
     }
     label {
       display: block;
       margin-top: 1rem;
-      text-align: left;
       font-weight: bold;
     }
     input, select, textarea {
       width: 100%;
-      padding: 0.6rem;
-      margin-top: 0.4rem;
+      padding: 10px;
+      margin-top: 0.5rem;
       border-radius: 8px;
       border: none;
-      font-size: 1rem;
+      background: #222;
+      color: #fff;
     }
     button {
       margin-top: 1.5rem;
-      padding: 0.75rem 2rem;
-      font-size: 1.1rem;
+      padding: 12px;
+      width: 100%;
+      background: #00ffcc;
       border: none;
       border-radius: 8px;
-      background: #00cc66;
-      color: white;
+      font-weight: bold;
+      color: #000;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
     button:hover {
-      background: #00994d;
+      background: #00ccaa;
     }
     .preview {
       margin-top: 2rem;
       position: relative;
-      display: inline-block;
+      width: 300px;
     }
     .preview img#shirt {
-      width: 320px;
-      border-radius: 12px;
-      border: 3px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      display: block;
     }
     .preview img#print-preview {
       position: absolute;
-      top: 80px;
+      top: 100px;
       left: 50%;
       transform: translateX(-50%);
-      max-width: 160px;
-      max-height: 160px;
+      max-width: 140px;
+      max-height: 140px;
       display: none;
-      pointer-events: none;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
     footer {
-      padding: 1rem;
-      background: rgba(0, 0, 0, 0.6);
+      margin-top: 3rem;
+      color: #666;
       font-size: 0.9rem;
-      color: #aaa;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Закажи свою кастомную футболку</h1>
-    <p>Загрузи эскиз и выбери расположение принта</p>
+    <h1>Твоя идея — наша футболка</h1>
+    <p>Загрузи свой эскиз, выбери расположение принта и отправь заказ</p>
   </header>
 
   <form action="https://formsubmit.co/mkoka098@gmail.com" method="POST" enctype="multipart/form-data">
-    <label for="name">Имя:</label>
+    <label for="name">Имя</label>
     <input type="text" id="name" name="name" required>
 
-    <label for="email">Email для связи:</label>
+    <label for="email">Email</label>
     <input type="email" id="email" name="email" required>
 
-    <label for="size">Размер футболки:</label>
-    <select id="size" name="size" required>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-    </select>
-
-    <label for="color">Цвет футболки:</label>
-    <input type="text" id="color" name="color" placeholder="Например: чёрный" required>
-
-    <label for="placement">Расположение принта:</label>
+    <label for="placement">Расположение принта</label>
     <select id="placement" name="placement" onchange="updatePrintPosition()">
       <option value="center">На груди</option>
       <option value="back">На спине</option>
@@ -134,27 +109,23 @@
       <option value="top">По центру</option>
     </select>
 
-    <label for="file">Загрузить эскиз:</label>
+    <label for="file">Загрузить эскиз</label>
     <input type="file" id="file" name="attachment" accept="image/*" required onchange="previewPrint(event)">
 
-    <label for="message">Комментарий или пожелания:</label>
+    <label for="message">Комментарий</label>
     <textarea id="message" name="message" rows="4"></textarea>
 
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_subject" value="Новый заказ на футболку">
 
-    <label>
-      <input type="checkbox" required>
-      Я согласен(а) на обработку персональных данных и размещение моего дизайна на футболке.
-    </label>
+    <label><input type="checkbox" required> Я согласен на обработку персональных данных</label>
 
     <button type="submit">Отправить заказ</button>
   </form>
 
   <div class="preview">
-    <h2>Пример предпросмотра:</h2>
     <img id="shirt" src="https://i.ibb.co/mDR9hxP/tshirt-flat.png" alt="Футболка">
-    <img id="print-preview" alt="Эскиз превью">
+    <img id="print-preview" alt="Принт превью">
   </div>
 
   <footer>
@@ -192,7 +163,7 @@
           print.style.left = '50%';
           break;
         case 'back':
-          print.style.top = '240px';
+          print.style.top = '220px';
           print.style.left = '50%';
           break;
       }
